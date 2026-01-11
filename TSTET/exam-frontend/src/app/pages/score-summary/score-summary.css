@@ -1,0 +1,263 @@
+.summary-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 30px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.card-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 1.6rem;
+  color: #333;
+}
+
+.subtitle {
+  color: #666;
+  margin: 0;
+}
+
+/* Overall Section */
+.overall-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.chart-container {
+  flex-shrink: 0;
+}
+
+.overall-stats {
+  flex: 1;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  color: #666;
+}
+
+.stat-value {
+  font-weight: bold;
+  color: #333;
+}
+
+.stat-row.correct .stat-value {
+  color: #28a745;
+}
+
+.stat-row.wrong .stat-value {
+  color: #dc3545;
+}
+
+.stat-row.unanswered .stat-value {
+  color: #6c757d;
+}
+
+.stat-row.total {
+  background: #e3f2fd;
+  margin: 8px -10px -8px;
+  padding: 12px 10px;
+  border-radius: 8px;
+}
+
+.stat-value.highlight {
+  color: #007bff;
+  font-size: 1.1rem;
+}
+
+/* Section Cards */
+.sections-score {
+  margin-bottom: 20px;
+}
+
+.sections-score h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.section-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.section-card {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+}
+
+.section-header {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #007bff;
+}
+
+.section-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.mini-stat {
+  text-align: center;
+}
+
+.mini-stat .num {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.mini-stat .lbl {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.mini-stat.correct .num {
+  color: #28a745;
+}
+
+.mini-stat.wrong .num {
+  color: #dc3545;
+}
+
+.mini-stat.unanswered .num {
+  color: #6c757d;
+}
+
+.section-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #28a745, #20c997);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #333;
+  min-width: 40px;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 20px 0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.dot.correct {
+  background: #28a745;
+}
+
+.dot.wrong {
+  background: #dc3545;
+}
+
+.dot.unanswered {
+  background: #6c757d;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  padding: 14px 30px;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  padding: 12px 30px;
+  background: white;
+  color: #666;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #f8f9fa;
+}

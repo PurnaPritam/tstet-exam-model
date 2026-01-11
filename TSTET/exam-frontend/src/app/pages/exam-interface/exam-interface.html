@@ -1,0 +1,97 @@
+<!-- filepath: /Users/purna/Code/WebDev/Django/TSTET/exam-frontend/src/app/pages/exam-interface/exam-interface.html -->
+<div class="exam-container">
+  <!-- Header -->
+  <div class="exam-header">
+    <div class="header-left">
+      <h2>{{ examName }}</h2>
+    </div>
+    <div class="header-right">
+      <div class="timer">Time Left: {{ displayTime }}</div>
+      <div class="user-info">{{ username }}</div>
+    </div>
+  </div>
+
+  <div class="exam-body">
+    <!-- Question Panel -->
+    <div class="question-panel">
+      <!-- Section Tabs -->
+      <div class="section-tabs">
+        <button 
+          *ngFor="let section of sections; let i = index"
+          class="section-tab"
+          [class.active]="i === currentSectionIndex"
+          (click)="jumpToSection(i)">
+          Part {{ section.part_number }}: {{ section.name }}
+        </button>
+      </div>
+
+      <!-- Current Question -->
+      <div class="question-area" *ngIf="questions.length > 0">
+        <div class="question-header">
+          <span class="question-number">Question No. {{ questions[currentQIndex].question_number }}</span>
+          <span class="section-name">{{ getCurrentSectionName() }}</span>
+        </div>
+
+        <div class="question-text">
+          <p [innerHTML]="questions[currentQIndex].text"></p>
+        </div>
+
+        <div class="options-list">
+          <div 
+            *ngFor="let option of questions[currentQIndex].options; let i = index"
+            class="option-item"
+            [class.selected]="questions[currentQIndex].selectedOption === i"
+            (click)="selectOption(i)">
+            <span class="option-number">({{ i + 1 }})</span>
+            <input 
+              type="radio"
+              [name]="'question-' + currentQIndex"
+              [checked]="questions[currentQIndex].selectedOption === i">
+            <span class="option-text">{{ option }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="btn-review" (click)="markForReview()">Mark for Review & Next</button>
+        <button class="btn-clear" (click)="clearResponse()">Clear Response</button>
+        <button class="btn-save" (click)="saveAndNext()">Save & Next</button>
+      </div>
+    </div>
+
+    <!-- Question Palette -->
+    <div class="question-palette">
+      <div class="palette-header">
+        <div class="legend">
+          <div class="legend-item"><span class="dot answered"></span> Answered</div>
+          <div class="legend-item"><span class="dot not-answered"></span> Not Answered</div>
+          <div class="legend-item"><span class="dot not-visited"></span> Not Visited</div>
+          <div class="legend-item"><span class="dot marked"></span> Marked for Review</div>
+        </div>
+      </div>
+
+      <div class="palette-sections">
+        <div *ngFor="let section of sections; let si = index" class="palette-section">
+          <div class="section-title">Part {{ section.part_number }}: {{ section.name }}</div>
+          <div class="palette-grid">
+            <button 
+              *ngFor="let q of getSectionQuestions(section); let qi = index"
+              (click)="jumpToQuestion(section.startIndex + qi)"
+              class="palette-btn"
+              [class.active]="currentQIndex === section.startIndex + qi"
+              [class.answered]="q.status === 'answered'"
+              [class.not-answered]="q.status === 'not_answered'"
+              [class.not-visited]="q.status === 'not_visited'"
+              [class.marked]="q.status === 'marked'"
+              [class.ans-marked]="q.status === 'ans_marked'">
+              {{ q.question_number }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-submit" (click)="submitExam()">Submit Exam</button>
+    </div>
+  </div>
+</div>

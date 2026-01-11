@@ -1,0 +1,81 @@
+<!-- filepath: /Users/purna/Code/WebDev/Django/TSTET/exam-frontend/src/app/pages/score-summary/score-summary.html -->
+<div class="summary-container">
+  <div class="summary-card">
+    <div class="card-header">
+      <h1>Exam Completed</h1>
+      <p class="subtitle">Performance Summary for {{ username }}</p>
+    </div>
+
+    <!-- Overall Score -->
+    <div class="overall-section">
+      <div class="chart-container">
+        <canvas #overallPieCanvas width="180" height="180"></canvas>
+      </div>
+      <div class="overall-stats">
+        <div class="stat-row">
+          <span class="stat-label">Total Questions:</span>
+          <span class="stat-value">{{ totalQuestions }}</span>
+        </div>
+        <div class="stat-row correct">
+          <span class="stat-label">Correct:</span>
+          <span class="stat-value">{{ correctCount }}</span>
+        </div>
+        <div class="stat-row wrong">
+          <span class="stat-label">Wrong:</span>
+          <span class="stat-value">{{ wrongCount }}</span>
+        </div>
+        <div class="stat-row unanswered">
+          <span class="stat-label">Unanswered:</span>
+          <span class="stat-value">{{ unansweredCount }}</span>
+        </div>
+        <div class="stat-row total">
+          <span class="stat-label">Your Score:</span>
+          <span class="stat-value highlight">{{ correctCount }} / {{ totalQuestions }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section-wise Scores -->
+    <div class="sections-score">
+      <h3>Section-wise Performance</h3>
+      <div class="section-cards">
+        <div *ngFor="let section of sectionScores" class="section-card">
+          <div class="section-header">{{ section.name }}</div>
+          <div class="section-stats">
+            <div class="mini-stat correct">
+              <span class="num">{{ section.correct }}</span>
+              <span class="lbl">Correct</span>
+            </div>
+            <div class="mini-stat wrong">
+              <span class="num">{{ section.wrong }}</span>
+              <span class="lbl">Wrong</span>
+            </div>
+            <div class="mini-stat unanswered">
+              <span class="num">{{ section.unanswered }}</span>
+              <span class="lbl">Skipped</span>
+            </div>
+          </div>
+          <div class="section-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" [style.width.%]="getSectionPercentage(section)"></div>
+            </div>
+            <span class="progress-text">{{ getSectionPercentage(section) }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item"><span class="dot correct"></span> Correct</div>
+      <div class="legend-item"><span class="dot wrong"></span> Wrong</div>
+      <div class="legend-item"><span class="dot unanswered"></span> Unanswered</div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn-primary" (click)="viewAnswers()">View Your Answers</button>
+      <button class="btn-secondary" (click)="exitToLogin()">Exit</button>
+    </div>
+  </div>
+</div>

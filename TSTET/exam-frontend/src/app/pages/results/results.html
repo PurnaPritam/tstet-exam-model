@@ -1,0 +1,99 @@
+<div class="results-container">
+  <!-- Header -->
+  <div class="results-header">
+    <div class="header-left">
+      <h2>{{ examName }} - Results</h2>
+      <span class="username">{{ username }}</span>
+    </div>
+    <div class="header-right">
+      <span class="score-item correct">Correct: {{ correctCount }}</span>
+      <span class="score-item wrong">Wrong: {{ wrongCount }}</span>
+      <span class="score-item unanswered">Unanswered: {{ unansweredCount }}</span>
+    </div>
+  </div>
+
+  <div class="results-body">
+    <!-- Question Panel -->
+    <div class="question-panel">
+      <!-- Section Tabs -->
+      <div class="section-tabs">
+        <button 
+          *ngFor="let section of sections; let i = index"
+          class="section-tab"
+          [class.active]="i === currentSectionIndex"
+          (click)="jumpToSection(i)">
+          Part {{ section.part_number }}: {{ section.name }}
+        </button>
+      </div>
+
+      <!-- Current Question -->
+      <div class="question-area" *ngIf="questions.length > 0">
+        <div class="question-header">
+          <span class="question-number">Question {{ questions[currentQIndex].question_number }} of {{ totalQuestions }}</span>
+          <span 
+            class="status-badge"
+            [class.correct]="getQuestionStatus(questions[currentQIndex]) === 'correct'"
+            [class.wrong]="getQuestionStatus(questions[currentQIndex]) === 'wrong'"
+            [class.unanswered]="getQuestionStatus(questions[currentQIndex]) === 'unanswered'">
+            {{ getQuestionStatus(questions[currentQIndex]) | uppercase }}
+          </span>
+        </div>
+
+        <div class="question-text">
+          <p [innerHTML]="questions[currentQIndex].text"></p>
+        </div>
+
+        <div class="options-list">
+          <div 
+            *ngFor="let option of questions[currentQIndex].options; let i = index"
+            class="option-item"
+            [class.correct-option]="i === questions[currentQIndex].correctOption"
+            [class.wrong-option]="questions[currentQIndex].selectedOption === i && i !== questions[currentQIndex].correctOption"
+            [class.selected]="questions[currentQIndex].selectedOption === i">
+            <span class="option-number">({{ i + 1 }})</span>
+            <span class="option-text">{{ option }}</span>
+            <span *ngIf="i === questions[currentQIndex].correctOption" class="answer-label correct">Correct</span>
+            <span *ngIf="questions[currentQIndex].selectedOption === i && i !== questions[currentQIndex].correctOption" class="answer-label wrong">Your Answer</span>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-buttons">
+          <button class="btn-nav" (click)="prevQuestion()" [disabled]="currentQIndex === 0">Previous</button>
+          <button class="btn-nav" (click)="nextQuestion()" [disabled]="currentQIndex === totalQuestions - 1">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question Palette -->
+    <div class="question-palette">
+      <h3>Question Palette</h3>
+      
+      <div class="palette-legend">
+        <div class="legend-item"><span class="dot correct"></span> Correct</div>
+        <div class="legend-item"><span class="dot wrong"></span> Wrong</div>
+        <div class="legend-item"><span class="dot unanswered"></span> Unanswered</div>
+      </div>
+
+      <div class="palette-sections">
+        <div *ngFor="let section of sections; let si = index" class="palette-section">
+          <div class="section-title">Part {{ section.part_number }}: {{ section.name }}</div>
+          <div class="palette-grid">
+            <button 
+              *ngFor="let q of getSectionQuestions(section); let qi = index"
+              (click)="jumpToQuestion(section.startIndex + qi)"
+              class="palette-btn"
+              [class.active]="currentQIndex === section.startIndex + qi"
+              [class.correct]="getQuestionStatus(q) === 'correct'"
+              [class.wrong]="getQuestionStatus(q) === 'wrong'"
+              [class.unanswered]="getQuestionStatus(q) === 'unanswered'">
+              {{ q.question_number }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-exit" (click)="exitResults()">Exit & Logout</button>
+    </div>
+  </div>
+</div>

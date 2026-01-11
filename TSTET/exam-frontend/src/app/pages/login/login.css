@@ -1,0 +1,101 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f5;
+  font-family: Arial, sans-serif;
+}
+
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  border-top: 5px solid #007bff;
+}
+
+h2 { margin-bottom: 10px; color: #333; }
+.subtitle { color: #666; margin-bottom: 20px; font-size: 0.9rem; }
+
+.form-group { margin-bottom: 15px; text-align: left; }
+label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; }
+input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+.btn-login:hover { background-color: #0056b3; }
+.btn-login:disabled { background-color: #ccc; }
+
+.error-alert { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-size: 0.9rem; }
+.footer-note { margin-top: 20px; font-size: 0.8rem; color: #888; }
+
+.exam-selection { margin: 20px 0; }
+.exam-option {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.exam-option:hover { background-color: #f9f9f9; border-color: #007bff; }
+
+.exam-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #007bff;
+  flex-shrink: 0;
+}
+
+.exam-option label { 
+  margin: 0; 
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  flex: 1;
+  gap: 10px;
+}
+.exam-option strong { 
+  font-size: 1rem;
+}
+.exam-option .duration { 
+  color: #666; 
+  font-size: 0.9rem; 
+}
+
+.exam-option.attempted {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.exam-option.disabled {
+  opacity: 0.8;
+}
+
+.attempted-badge {
+  font-size: 0.85rem;
+  color: #28a745;
+  font-weight: bold;
+  padding: 4px 10px;
+  background: #d4edda;
+  border-radius: 4px;
+}

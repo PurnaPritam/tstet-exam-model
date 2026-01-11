@@ -1,0 +1,77 @@
+<div class="login-container">
+  <div class="login-box">
+    <!-- LOGIN FORM -->
+    <ng-container *ngIf="!showExamSelection">
+      <h2>Candidate Login</h2>
+      <p class="subtitle">Please enter your credentials</p>
+
+      <div *ngIf="errorMessage" class="error-alert">
+        {{ errorMessage }}
+      </div>
+
+      <form (submit)="login()">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" [(ngModel)]="username" name="username" placeholder="Enter Username" required>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" [(ngModel)]="password" name="password" placeholder="Enter Password" required>
+        </div>
+
+        <button type="submit" class="btn-login" [disabled]="isLoading">
+          {{ isLoading ? 'Logging in...' : 'Login' }}
+        </button>
+      </form>
+      
+      <div class="footer-note">
+        <p>System Name: C001</p>
+        <p>Ensure your keyboard layout is English.</p>
+      </div>
+    </ng-container>
+
+    <!-- EXAM SELECTION -->
+    <ng-container *ngIf="showExamSelection">
+      <h2>Select Exam</h2>
+      <p class="subtitle">Choose an exam to begin</p>
+
+      <div *ngIf="errorMessage" class="error-alert">
+        {{ errorMessage }}
+      </div>
+
+      <div class="exam-selection" *ngIf="exams.length > 0">
+        <div 
+          *ngFor="let exam of exams" 
+          class="exam-option"
+          [class.attempted]="exam.attempted"
+          [class.disabled]="exam.attempted"
+          (click)="!exam.attempted && (selectedExamId = exam.id)">
+          <strong>{{ exam.name }}</strong>
+          <input 
+            *ngIf="!exam.attempted"
+            type="radio" 
+            [id]="'exam-' + exam.id" 
+            [(ngModel)]="selectedExamId" 
+            [value]="exam.id"
+            name="exam">
+          <span *ngIf="!exam.attempted" class="duration">({{ exam.duration_minutes }} minutes)</span>
+          <span *ngIf="exam.attempted" class="attempted-badge">
+            Already Attempted - Score: {{ exam.score }}/{{ exam.total }}
+          </span>
+        </div>
+      </div>
+
+      <div *ngIf="exams.length === 0" class="error-alert">
+        No exams available. Please contact administrator.
+      </div>
+
+      <button 
+        (click)="startExam()" 
+        class="btn-login" 
+        [disabled]="!selectedExamId || isSelectedExamAttempted()">
+        Start Exam
+      </button>
+    </ng-container>
+  </div>
+</div>
