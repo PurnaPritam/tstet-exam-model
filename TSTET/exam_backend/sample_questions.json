@@ -1,0 +1,29 @@
+{
+  "exam": {
+    "name": "TSTET Paper 1 - 2024",
+    "duration": 150
+  },
+  "sections": [
+    {"name": "Child Development & Pedagogy", "part_number": 1, "order": 1},
+    {"name": "Language I - Telugu", "part_number": 2, "order": 2},
+    {"name": "Language II - English", "part_number": 3, "order": 3},
+    {"name": "Mathematics", "part_number": 4, "order": 4},
+    {"name": "Environmental Studies", "part_number": 5, "order": 5}
+  ],
+  "questions": [
+    {
+      "question_number": 1,
+      "section_name": "Child Development & Pedagogy",
+      "text": "Who proposed the theory of cognitive development?",
+      "options": ["Piaget", "Vygotsky", "Skinner", "Bruner"],
+      "correct_option": 1
+    },
+    {
+      "question_number": 2,
+      "section_name": "Child Development & Pedagogy",
+      "text": "Zone of Proximal Development was introduced by?",
+      "options": ["Piaget", "Vygotsky", "Kohlberg", "Erikson"],
+      "correct_option": 2
+    }
+  ]
+}

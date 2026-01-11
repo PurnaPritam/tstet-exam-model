@@ -1,0 +1,12 @@
+
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls %}
+
+{% block object-tools-items %}
+{{ block.super }}
+{% if show_clear_history %}
+<li>
+    <a href="clear-history/" class="button" style="background: #dc3545;">Clear All User History</a>
+</li>
+{% endif %}
+{% endblock %}

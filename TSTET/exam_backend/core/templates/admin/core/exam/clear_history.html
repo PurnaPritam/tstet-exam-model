@@ -1,0 +1,29 @@
+
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls %}
+
+{% block content %}
+<div style="padding: 20px; max-width: 600px;">
+    <h1>Clear All User History</h1>
+    
+    <div style="background: #fff3cd; border: 1px solid #ffc107; padding: 15px; border-radius: 5px; margin: 20px 0; color: #856404;">
+        <strong>Warning:</strong> This will permanently delete all student attempt data.
+    </div>
+
+    <div style="background: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
+        <h3 style="margin-top: 0;">Data to be deleted:</h3>
+        <ul>
+            <li><strong>Student Attempts:</strong> {{ attempt_count }}</li>
+            <li><strong>Question Statuses:</strong> {{ status_count }}</li>
+        </ul>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" style="background: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+            Confirm Clear History
+        </button>
+        <a href="{% url 'admin:core_exam_changelist' %}" style="margin-left: 10px; color: #666;">Cancel</a>
+    </form>
+</div>
+{% endblock %}
